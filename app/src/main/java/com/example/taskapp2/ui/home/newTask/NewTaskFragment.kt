@@ -31,7 +31,7 @@ class NewTaskFragment : Fragment() {
             findNavController().navigateUp()
             setFragmentResult(
                 "new_task",
-                bundleOf("title" to binding.etTytle.toString(), "desc" to binding.etDesc.toString())
+                bundleOf("title" to binding.etTytle.text.toString(), "desc" to binding.etDesc.text.toString())
             )
         }
     }

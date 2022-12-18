@@ -5,6 +5,8 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.activity.result.ActivityResultLauncher
+import androidx.activity.result.contract.ActivityResultContracts
 import androidx.fragment.app.Fragment
 import com.example.taskapp2.databinding.FragmentProfileBinding
 
@@ -16,7 +18,11 @@ class profileFragment : Fragment() {
         super.onCreate(savedInstanceState)
 
     }
-
+    var mGetContent: ActivityResultLauncher<String> = registerForActivityResult(
+        ActivityResultContracts.GetContent(), {uri->
+            binding.rvProfile.setImageURI(uri)
+        }
+    )
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
@@ -27,7 +33,7 @@ class profileFragment : Fragment() {
     }
 
     private fun initListener() {
-        binding.ivProfile.setOnClickListener {
+        binding.rvProfile.setOnClickListener {
             mGetContent.launch("image/*");
 
         }
