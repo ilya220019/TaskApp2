@@ -1,0 +1,43 @@
+package com.example.taskapp2.ui.onBoard
+
+import android.os.Bundle
+import androidx.fragment.app.Fragment
+import android.view.LayoutInflater
+import android.view.View
+import android.view.ViewGroup
+import androidx.lifecycle.ViewModel
+import androidx.viewpager.widget.ViewPager
+import com.example.taskapp2.R
+import com.example.taskapp2.databinding.FragmentOnBoardBinding
+
+class onBoardFragment : Fragment() {
+    private lateinit var binding: FragmentOnBoardBinding
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+
+    }
+
+    override fun onCreateView(
+        inflater: LayoutInflater, container: ViewGroup?,
+        savedInstanceState: Bundle?
+    ): View {
+        binding = FragmentOnBoardBinding.inflate(LayoutInflater.from(context), container, false)
+        return binding.root
+    }
+
+
+
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
+        val adapter = BoardAdapter(childFragmentManager,this::onSkipClick,this::onNextkClick)
+        binding.vpBoard.adapter = adapter
+        binding.wormDotsIndicator.attachTo(binding.vpBoard)
+
+    }
+    private fun onSkipClick(){
+        binding.vpBoard.currentItem = 2
+}
+    private fun onNextkClick(){
+        binding.vpBoard.currentItem+=1
+    }
+}
